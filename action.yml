@@ -1,11 +1,43 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Get GitHub Project V2 Items'
+description: "This action outputs the items data of your organization's GitHub Project."
+branding:
+  icon: 'layers'
+  color: 'purple'
+
 inputs:
-  milliseconds: # change this
+  gh_token:
+    description: 'GitHub Token with org permission'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    default: ''
+  org:
+    description: "Your organization's name"
+    required: false
+    default: '' # defaults to github.context.repo.owner
+  project_number:
+    description: "Github Project's number in your organization"
+    required: true
+    default: ''
+  repo:
+    description: 'Repository name for filtering items'
+    required: false
+    default: ''
+  single_select_field_id:
+    description: 'Single select field ID for filtering items (single_select_field_option_id is required)'
+    required: false
+    default: ''
+  single_select_field_option_id:
+    description: 'Option ID of the supplied single select field for filtering items (single_select_field_id is required)'
+    required: false
+    default: ''
+  label_name:
+    description: 'Label name for filtering items'
+    required: false
+    default: ''
+
+outputs:
+  item_ids_json:
+    description: 'filtered item ids in JSON'
+
 runs:
   using: 'node16'
   main: 'dist/index.js'
